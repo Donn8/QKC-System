@@ -80,7 +80,7 @@ public class UserController {
 		return "loginPage";
 		}
 	}
-	
+	// For authentication purposes
 	@PostMapping("/auth")
 	public String authenticate(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
 		String returnPg = "loginPage";
