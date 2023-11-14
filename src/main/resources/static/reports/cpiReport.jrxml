@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cpiReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cab585cd-49f3-4a76-b5a3-98fefd807595">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="branchId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT fpl.sku_cd, sku.sku_name,
+       SUM(fpl.quantity - NVL((SELECT SUM(dt.quantity)
+                               FROM grp2_dispatch_tracking dt
+                               WHERE dt.fpl_id = fpl.fpl_id), 0)),
+       sku.unit_of_measurement, br.branch_name
+FROM grp2_finished_product_list fpl,grp2_sku sku, grp2_branch br
+WHERE fpl.sku_cd = sku.sku_cd AND fpl.branch_id = br.branch_id AND fpl.branch_id = $P{branchId}
+GROUP BY fpl.sku_cd, sku.sku_name, sku.unit_of_measurement, br.branch_name
+ORDER BY fpl.sku_cd]]>
+	</queryString>
+	<field name="SKU_CD" class="java.lang.String"/>
+	<field name="SKU_NAME" class="java.lang.String"/>
+	<field name="SUM(FPL.QUANTITY-NVL((SELECTSUM(DT.QUANTITY)FROMGRP2_DISPATCH_TRACKINGDTWHEREDT.FPL_ID=FPL.FPL_ID),0))" class="java.math.BigDecimal"/>
+	<field name="UNIT_OF_MEASUREMENT" class="java.lang.String"/>
+	<field name="BRANCH_NAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="31d901a9-695d-4f88-9c37-9dba46b90c48"/>
+				<text><![CDATA[Quisine Kamote Crisps - Current Product Inventory]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="270" y="0" width="120" height="20" uuid="d55f5a44-18cb-4142-ad3d-8f671775db0e"/>
+				<text><![CDATA[Unit of Measurement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="80" height="20" uuid="5639aa1f-e57f-4cca-b22c-68af86db5eeb"/>
+				<text><![CDATA[Branch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="0" width="100" height="20" uuid="20e08f5d-4053-43db-a22f-afc5b915aadd"/>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="80" height="20" uuid="882cd0e2-aeab-4dd9-99b7-f7619fa508b1"/>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="1" width="90" height="20" uuid="5459c8da-3f22-4b81-87f4-3d3fe30455bc"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="90" y="0" width="100" height="20" uuid="c0a1d465-854c-4bff-9cbd-e73561b760b8"/>
+				<textFieldExpression><![CDATA[$F{SKU_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="120" height="20" uuid="24ab7395-7e55-4f71-bdae-7cdb39d71234"/>
+				<textFieldExpression><![CDATA[$F{UNIT_OF_MEASUREMENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="80" height="20" uuid="69d8e666-bfff-49ca-af30-7b68eea5634c"/>
+				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="1" width="90" height="20" uuid="d5574b07-da58-408e-8df5-f3698ca44cfb"/>
+				<textFieldExpression><![CDATA[$F{SKU_CD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="1" width="80" height="20" uuid="2814b03a-9da7-44db-8a2b-6925f2324fac"/>
+				<textFieldExpression><![CDATA[$F{SUM(FPL.QUANTITY-NVL((SELECTSUM(DT.QUANTITY)FROMGRP2_DISPATCH_TRACKINGDTWHEREDT.FPL_ID=FPL.FPL_ID),0))}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fplReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0d242368-fb98-4864-81fe-ec71687f0aaf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="branchId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fromDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="toDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT fpl.fpl_id, sku.sku_name, fpl.quantity, sku.unit_of_measurement, br.branch_name, fpl.date_finished
+FROM grp2_finished_product_list fpl, grp2_sku sku, grp2_branch br
+WHERE fpl.sku_cd = sku.sku_cd
+AND fpl.branch_id = br.branch_id
+AND fpl.branch_id = $P{branchId}
+AND TO_DATE(fpl.date_finished, 'MM-DD-YYYY HH24:MI:SS') >= TO_DATE($P{fromDate}, 'YYYY-MM-DD')
+AND TO_DATE(fpl.date_finished, 'MM-DD-YYYY HH24:MI:SS') <= TO_DATE($P{toDate}, 'YYYY-MM-DD')]]>
+	</queryString>
+	<field name="FPL_ID" class="java.math.BigDecimal"/>
+	<field name="SKU_NAME" class="java.lang.String"/>
+	<field name="QUANTITY" class="java.math.BigDecimal"/>
+	<field name="UNIT_OF_MEASUREMENT" class="java.lang.String"/>
+	<field name="BRANCH_NAME" class="java.lang.String"/>
+	<field name="DATE_FINISHED" class="java.sql.Timestamp"/>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="561a488e-4ff1-4d13-b598-3c387f3317b7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Quisine Kamote Crisps - Finished Product List]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="90" height="20" uuid="1aca52fb-0aa8-4279-b9f2-dccd911d588d"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="0" width="100" height="20" uuid="4bbce012-d769-4911-942c-52af77dbdad8"/>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="80" height="20" uuid="c2fc12e2-4728-42ae-a66e-6bfa9ec43565"/>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="0" width="120" height="20" uuid="3ae67abf-c203-458c-ab4e-9bcf67b8a5c0"/>
+				<text><![CDATA[Unit of Measurement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="80" height="20" uuid="b2657fb2-2c36-4015-b6ad-5414001d5a1e"/>
+				<text><![CDATA[Branch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="85" height="20" uuid="a555b841-7642-4172-aff2-3e114beaeadd"/>
+				<text><![CDATA[Date Finished]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="90" height="20" uuid="de4c8610-7c1f-4927-91af-f37dd8a7932e"/>
+				<textFieldExpression><![CDATA[$F{FPL_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="0" width="98" height="20" uuid="373d5c86-52f0-48b7-a2a2-cabb83da3713"/>
+				<textFieldExpression><![CDATA[$F{SKU_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="80" height="20" uuid="7092d530-a066-48a5-b7c7-e95b68c31105"/>
+				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="120" height="20" uuid="773d3fc6-158d-470c-a5e0-e0240a6271d5"/>
+				<textFieldExpression><![CDATA[$F{UNIT_OF_MEASUREMENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="80" height="20" uuid="26892ae3-0282-4356-b31d-8570da929052"/>
+				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="85" height="20" uuid="dd63feb7-48e0-4e84-a3af-57639436092c"/>
+				<textFieldExpression><![CDATA[$F{DATE_FINISHED}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

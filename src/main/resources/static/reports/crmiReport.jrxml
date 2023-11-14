@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cpiReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cab585cd-49f3-4a76-b5a3-98fefd807595">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="branchId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT rml.material_cd, r.material_name,
+	SUM(rml.quantity)-NVL((SELECT SUM(quantity_to_use)
+			FROM grp2_production_materials
+			WHERE material_cd = rml.material_cd),0),
+	r.unit_of_measurement, br.branch_name
+FROM grp2_raw_material r, grp2_raw_material_list rml, grp2_branch br
+WHERE rml.material_cd = r.material_cd AND rml.branch_id = br.branch_id
+AND rml.branch_id = $P{branchId}
+GROUP BY rml.material_cd, r.material_name,r.unit_of_measurement, br.branch_name
+ORDER BY rml.material_cd]]>
+	</queryString>
+	<field name="MATERIAL_CD" class="java.lang.String"/>
+	<field name="MATERIAL_NAME" class="java.lang.String"/>
+	<field name="SUM(RML.QUANTITY)-NVL((SELECTSUM(QUANTITY_TO_USE)FROMGRP2_PRODUCTION_MATERIALSWHEREMATERIAL_CD=RML.MATERIAL_CD),0)" class="java.math.BigDecimal"/>
+	<field name="UNIT_OF_MEASUREMENT" class="java.lang.String"/>
+	<field name="BRANCH_NAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="31d901a9-695d-4f88-9c37-9dba46b90c48"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Quisine Kamote Crisps - Current Raw Material Inventory]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="270" y="0" width="120" height="20" uuid="d55f5a44-18cb-4142-ad3d-8f671775db0e"/>
+				<text><![CDATA[Unit of Measurement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="80" height="20" uuid="5639aa1f-e57f-4cca-b22c-68af86db5eeb"/>
+				<text><![CDATA[Branch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="0" width="100" height="20" uuid="20e08f5d-4053-43db-a22f-afc5b915aadd"/>
+				<text><![CDATA[Material Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="80" height="20" uuid="882cd0e2-aeab-4dd9-99b7-f7619fa508b1"/>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="90" height="20" uuid="47063c19-f0cb-4b8f-adad-1fe468daf0b0"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="90" height="20" uuid="1735b76c-58d2-462c-8b8c-7d3edc4245fd"/>
+				<textFieldExpression><![CDATA[$F{MATERIAL_CD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="1" width="100" height="20" uuid="7c2b4a4f-3335-4507-ada4-cf5449fe87cd"/>
+				<textFieldExpression><![CDATA[$F{MATERIAL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="1" width="80" height="20" uuid="a50d181f-be9e-48bd-8cd7-18c829d48a49"/>
+				<textFieldExpression><![CDATA[$F{SUM(RML.QUANTITY)-NVL((SELECTSUM(QUANTITY_TO_USE)FROMGRP2_PRODUCTION_MATERIALSWHEREMATERIAL_CD=RML.MATERIAL_CD),0)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="1" width="120" height="20" uuid="3e32d110-6207-4925-a262-bbd76ccb949a"/>
+				<textFieldExpression><![CDATA[$F{UNIT_OF_MEASUREMENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="1" width="80" height="20" uuid="e6242674-b64a-4675-bcb5-f18db6ea5b03"/>
+				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,137 @@
+@charset "ISO-8859-1";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: 'Roboto', sans-serif;
+	background-image:
+		url('/img/bgr.avif');
+	background-size: cover;
+	background-position: center;
+	color: white;
+}
+
+.login-form label {
+	font-weight: bold;
+	color: white;
+	font-family: 'Lobster', 'cursive';
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin: 5px 0;
+	background: none;
+	border: none;
+	outline: none;
+	border-bottom: 2px solid;
+	border-bottom-color: rgb(255, 255, 255);
+	color: white;
+	font-family: 'Roboto', sans-serif;
+}
+
+.login-form input[type="text"]::placeholder,
+.login-form input[type="password"]::placeholder {
+	color: white;
+}
+
+.container {
+	display: flex;
+	width: 70%;
+	height: 70%;
+	box-shadow: 0 4px 8px rgb(192, 192, 192, 0.3);
+	animation: fadeInAnimation 2s ease;
+	border-radius: 10px;
+}
+
+.login-form {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+	backdrop-filter: blur(10px);
+	background: transparent;
+}
+
+.login-form h1 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.login-form table {
+	width: 100%;
+}
+
+.login-form label {
+	font-weight: bold;
+}
+
+
+.login-form input[type="reset"] {
+	width: 100px;
+	padding: 10px;
+	margin: 10px 0;
+	background-color: #ff4d4d;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.login-form input[type="submit"] {
+	width: 100px;
+	padding: 10px;
+	margin: 10px 0;
+	background-color: #4d79ff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.login-form input[type="reset"]:hover {
+	background-color: #ff6666;
+}
+
+.login-form input[type="submit"]:hover {
+	background-color: #6699ff;
+}
+
+.quote {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 50px;
+	border-left: 1px solid #ddd;
+	box-shadow: -2px 0 4px rgb(128, 128, 128, 0.5);
+	background-image: url('/img/banner.png');
+	background-size: 100% 100%;
+	background-position: center;
+	border-radius: 10px;
+}
+
+
+.login-form a.forgot-password {
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+}
+
+.login-form a.sign-up {
+	color: rgb(0, 0, 255);
+	text-decoration: none;
+}
+
+.login-form a.forgot-password:hover,
+.login-form a.sign-up:hover {
+	text-decoration: underline;
+}

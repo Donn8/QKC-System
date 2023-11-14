@@ -1,0 +1,128 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: rgb(255, 255, 255);
+	padding:0 0 20px 0;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table th,
+.table td {
+	border: 1px solid #000000;
+	padding: 8px;
+	text-align: left;
+	background-color: #FFFFFF;
+}
+
+.table th {
+	background-color: #0056b3;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.btn-container {
+	display: flex;
+	align-items: center;
+}
+
+.btn-container button {
+	flex: 1;
+}
+
+tbody tr {
+	background-color: #FFFFFF;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+
+	.table th,
+	.table td {
+		font-size: 14px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+
+	.table th,
+	.table td {
+		font-size: 12px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+
+	.table th,
+	.table td {
+		font-size: 10px;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+
+	.table th,
+	.table td {
+		font-size: 8px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+
+	.btn-primary,
+	.btn-danger {
+		padding: 3px 6px;
+	}
+
+	.btn-primary i,
+	.btn-danger i {
+		margin-right: 3px;
+	}
+}
+
+@media only screen and (max-width: 360px) {
+
+	.btn-primary,
+	.btn-danger {
+		padding: 2px 4px;
+	}
+
+	.btn-primary i,
+	.btn-danger i {
+		margin-right: 2px;
+	}
+}
+
+@media only screen and (max-width: 280px) {
+
+	.btn-primary,
+	.btn-danger {
+		padding: 1px 2px;
+	}
+
+	.btn-primary i,
+	.btn-danger i {
+		margin-right: 1px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.table {
+		display: block;
+		overflow-x: auto;
+	}
+
+	.table th,
+	.table td {
+		white-space: nowrap;
+	}
+
+	.btn-container {
+		flex-direction: column;
+	}
+}
