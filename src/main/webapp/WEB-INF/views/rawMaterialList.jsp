@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dataTables.css">
 <br>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRawMaterialListMdl">
+<button type="button" id="addRawMaterialButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRawMaterialListMdl">
  <i class="fas fa-plus"></i> Add Raw Material
 </button>
 <br>
@@ -67,6 +67,42 @@ $(document).ready(function(){
 		var rawMatListId = $(this).closest('tr').find('#rawMatListId').text();
 		$('#delmaterialListId').val(rawMatListId);
 		
+	});
+
+	//Change
+	$('#rawMaterialListAdd').submit(function(){
+		$('#addRawMaterialListMdl').modal('hide');
+		$('#addRawMaterialButton').attr('disabled','disabled');
+		$('.btnEdit').attr('disabled','disabled');
+		$('.btnDelete').attr('disabled','disabled');
+		swal("Nice!","Added Successfully","success",{
+				timer: 1500,
+				buttons: false
+			})
+	});
+	
+	//Change
+	$('#rawMaterialListEdit').submit(function(){
+		$('#editRawMaterialListMdl').modal('hide');
+		$('#addRawMaterialButton').attr('disabled','disabled');
+		$('.btnEdit').attr('disabled','disabled');
+		$('.btnDelete').attr('disabled','disabled');
+		swal("Nice!","Updated Successfully","success",{
+				timer: 1500,
+				buttons: false
+			})
+	});
+	
+	//Change
+	$('#rawMaterialListDelete').submit(function(){
+		$('#delRawMaterialListMdl').modal('hide');
+		$('#addRawMaterialButton').attr('disabled','disabled');
+		$('.btnEdit').attr('disabled','disabled');
+		$('.btnDelete').attr('disabled','disabled');
+		swal("Nice!","Deleted Successfully","success",{
+				timer: 1500,
+				buttons: false
+			})
 	});
 	
 });
