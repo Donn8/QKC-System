@@ -42,7 +42,6 @@
 		<br>
 	</div>
 	<jsp:include page="branchForm.jsp" />
-	<%@ include file="qkcFooter.jsp"%>
 </body>
 <script>
 	$(document).ready(function() {
