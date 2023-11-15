@@ -7,15 +7,18 @@
 			<div class="modal-body">
 				<form id="addFormDispTyp">
 					<div class="form-group">
-						<label for="addDispTypCd">Dispatch Type Code</label> <input type="text"
-							class="form-control" id="addDispTypCd" name="addDispTypCd" pattern="^(?:DISP)\d\d\d$" required
-							placeholder= "DISP###" title="Format: DISP###">
+						<label for="addDispTypCd">Dispatch Type Code</label>
+						<small id="dispatchTypeCdFormat" class="text-muted">(Format should be DISP###)</small>
+						<input type="text"
+							class="form-control" id="addDispTypCd" name="addDispTypCd" pattern="^(?:DISP)\d\d\d$" 
+							placeholder= "Enter dispatch type code here" aria-describedby="dispatchTypeCdFormat"
+							maxlength="7" required>
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="addDispTypName">Dispatch Type Name</label> <input type="text"
-							class="form-control" id="addDispTypName" name="addDispTypName" required
-							placeholder="Enter dispatch type name">
+						<label for="addDispTypName">Dispatch Type Name</label> <input type="text" maxlength="50"
+							class="form-control" id="addDispTypName" name="addDispTypName"
+							placeholder="Enter dispatch type name" required>
 					</div>
 					<br>
 					<div class="form-group">
@@ -41,12 +44,16 @@
 				<form id="editFormDispTyp">
 					<input type="hidden" id="oldDispTypCd" name="oldDispTypCd"/>
 					<div class="form-group">
-						<label for="newDispTypCd">Dispatch Type Code</label> <input type="text"
-							class="form-control" id="newDispTypCd" name="newDispTypCd"  title="Format: DISP###" pattern="^(?:DISP)\d\d\d$" required />
+						<label for="newDispTypCd">Dispatch Type Code</label>
+						<small id="dispatchTypeCdFormat" class="text-muted">(Format should be DISP###)</small>
+						 <input type="text"
+							class="form-control" id="newDispTypCd" name="newDispTypCd"  title="Format: DISP###" pattern="^(?:DISP)\d\d\d$"
+							aria-describedby="dispatchTypeCdFormat" maxlength="7" required />
 					</div>
 					<br>
+					<input type="hidden" id="oldDispTypName" name="oldDispTypName"/>
 					<div class="form-group">
-						<label for="newDispTypName">Dispatch Type Name</label> <input type="text"
+						<label for="newDispTypName">Dispatch Type Name</label> <input type="text" maxlength="50"
 							class="form-control" id="newDispTypName" name="newDispTypName" required />
 					</div>
 					<br>
