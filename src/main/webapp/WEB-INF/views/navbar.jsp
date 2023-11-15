@@ -1,11 +1,16 @@
 <style>
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+	
 #qkcheader {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 20px 50px;
-	background: #f8d7da;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	background: #171810;
+	box-shadow: 0 5px 15px rgba(128, 128, 128, 0.2);
 	z-index: 999;
 	position: sticky;
 	top: 0;
@@ -40,26 +45,31 @@
 	text-decoration: none;
 	font-size: 16px;
 	font-weight: 500;
-	color: black;
+	color: #D6DFE0;
 	transition: 0.3s ease;
+	font-family: 'Poppins', sans-serif;
 }
 
 #qkcnavbar li.active a {
-	color: #127475;
+	color: #E09D60;
 }
 
 #qkcnavbar li a:hover {
-	color: #127475;
+	color: #E09D60;
 }
 
 #qkcnavbar li.active a::after, #qkcnavbar li a:hover::after {
 	content: "";
-	width: 30%;
+	width: 20%;
 	height: 2px;
-	background: #127475;
+	background: #E09D60;
 	position: absolute;
 	bottom: -4px;
 	left: 20px;
+}
+
+#qkcnavbar li a.dropdown-item{
+color: black;
 }
 
 #btnLogOut {
@@ -75,8 +85,9 @@
 	background-color: #34495e;
 }
 
-h5 {
+#qkclogo h5 {
 	margin-left: 10px;
+	color: #E09D60;
 }
 </style>
 
@@ -98,7 +109,7 @@ h5 {
 			<li><a href="/report-gen-section">Reports</a></li>
 			<li><a href="/finishedProductList">Finished Product</a></li>
 				<li><div class="dropdown">
-				<a class="btn dropdown-toggle" href="/maintenance"
+				<a class="dropdown-toggle" href="/maintenance"
 					role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
 					aria-expanded="false"> Maintenance </a>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
