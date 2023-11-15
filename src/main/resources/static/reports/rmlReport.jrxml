@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fplReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0d242368-fb98-4864-81fe-ec71687f0aaf">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.2100000000000002"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="branchId" class="java.lang.Integer">
@@ -29,40 +29,86 @@ AND rml.branch_id = br.branch_id
 	<field name="BRANCH_NAME" class="java.lang.String"/>
 	<field name="DATE_RECEIVE" class="java.sql.Timestamp"/>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="136" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="28cf4563-a124-4614-aeab-80dd7dd23fe0"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="false">
+				<reportElement x="30" y="0" width="100" height="20" uuid="bc71cbe6-7aad-4191-aadb-8660941eccf0"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="743d8edb-93cb-45a8-a138-5c1ccf4a900e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="30" uuid="561a488e-4ff1-4d13-b598-3c387f3317b7"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Quisine Kamote Crisps - Raw Materials List]]></text>
+				<reportElement x="0" y="0" width="30" height="20" uuid="dec57d10-2e8a-4881-8322-4fc52bed591f"/>
+				<text><![CDATA[Date:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="105" y="33" width="450" height="33" backcolor="#FFCC00" uuid="742158f8-ae78-44e5-ab46-26c9df0261b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Script MT Bold" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quisine Kamote Crisps]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="105" y="66" width="450" height="33" backcolor="#FFCC00" uuid="42742df8-e3ed-43ba-821d-390a70d507d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Raw Material List Report]]></text>
+			</staticText>
+			<image>
+				<reportElement mode="Transparent" x="65" y="33" width="119" height="84" backcolor="#FFCC33" uuid="31f64e30-3e2f-4844-847f-7e2cc0dcf9fd"/>
+				<imageExpression><![CDATA["C:\\Users\\Mcdo\\Pictures\\QKC Logo.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="92" height="20" uuid="5279c56e-1d40-44a7-bc53-a5b5920436cc"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="92" y="0" width="92" height="20" uuid="434a236d-6957-4728-b212-21bddedb638d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[MATERIAL NAME]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="184" y="0" width="92" height="20" uuid="84e87894-528e-42e2-899e-62966438c039"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[QUANTITY]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="276" y="0" width="92" height="20" uuid="7309403d-be24-4f83-b7c0-cdc5a483ee12"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[NAME]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="368" y="0" width="92" height="20" uuid="87a8edfc-88c2-4d30-a495-55321d235045"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[BRANCH]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="460" y="0" width="95" height="20" uuid="e31b8329-35ef-4f29-814b-4eec0e47b67d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[DATE RECEIVED]]></text>
 			</staticText>
 		</band>
@@ -71,26 +117,32 @@ AND rml.branch_id = br.branch_id
 		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="92" height="20" uuid="c01fcf47-232e-4f1e-833c-8602a81a6ef6"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{MATERIAL_CD}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="0" width="92" height="20" uuid="f4e5fcba-77bb-4951-88ee-7b6ed4d2974e"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{MATERIAL_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="184" y="0" width="92" height="20" uuid="eeb22343-fdf2-483b-96f2-4e9685a6d45a"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="276" y="0" width="92" height="20" uuid="8202b079-e652-4e62-a102-d0e7ba67624a"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="368" y="0" width="92" height="20" uuid="6b5b28ba-aa74-4b07-8724-0dceb42e1fb4"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="460" y="0" width="95" height="20" uuid="62c0c314-e43b-4c63-9e6a-424b8175eca2"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{DATE_RECEIVE}]]></textFieldExpression>
 			</textField>
 		</band>

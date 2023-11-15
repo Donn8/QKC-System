@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fplReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0d242368-fb98-4864-81fe-ec71687f0aaf">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.2100000000000013"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<style name="Column Header" mode="Opaque" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false">
+		<pen lineStyle="Dashed"/>
+	</style>
 	<parameter name="branchId" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -31,40 +34,86 @@ AND TO_DATE(dpp.production_date, 'MM-DD-YYYY HH24:MI:SS') <= TO_DATE($P{toDate},
 		<variableExpression><![CDATA[$F{QUANTITY}]]></variableExpression>
 	</variable>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="132" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="30" uuid="561a488e-4ff1-4d13-b598-3c387f3317b7"/>
-				<textElement>
-					<font size="12"/>
+				<reportElement mode="Transparent" x="105" y="33" width="450" height="33" backcolor="#FFCC00" uuid="561a488e-4ff1-4d13-b598-3c387f3317b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Script MT Bold" size="22" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Quisine Kamote Crisps - Daily Planned Production]]></text>
+				<text><![CDATA[Quisine Kamote Crisps]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="85b26512-a6ee-4fa4-be73-9885b2acd8d4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="f35745f6-23e5-4ff1-a145-ff0df4ab0414"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="20" uuid="686db84f-186b-486b-83dc-ce8d50740a5d"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="false">
+				<reportElement x="30" y="0" width="100" height="20" uuid="6287dc25-cb67-42dd-92b1-9283cefe457e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Transparent" x="65" y="33" width="119" height="84" backcolor="#FFCC33" uuid="4dddb104-e782-4cbc-90ca-607c6f9f7d46"/>
+				<imageExpression><![CDATA["C:\\Users\\Mcdo\\Pictures\\QKC Logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Transparent" x="105" y="66" width="450" height="33" backcolor="#FFCC00" uuid="5dc4abd1-ad61-4bbd-86ee-1a07aefd27da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Daily Planned Production Report]]></text>
 			</staticText>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="92" height="20" uuid="195174e1-3ee3-4768-9253-b3066e21d876"/>
+				<reportElement mode="Opaque" x="0" y="0" width="92" height="20" uuid="195174e1-3ee3-4768-9253-b3066e21d876"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="92" y="0" width="92" height="20" uuid="20145c55-c669-4c48-96c9-173f0287df08"/>
+				<reportElement mode="Opaque" x="92" y="0" width="92" height="20" uuid="20145c55-c669-4c48-96c9-173f0287df08"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[SKU]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="184" y="0" width="92" height="20" uuid="4f4a93ec-b586-45e3-a959-e26e979d02a7"/>
+				<reportElement mode="Opaque" x="184" y="0" width="92" height="20" uuid="4f4a93ec-b586-45e3-a959-e26e979d02a7"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[STATUS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="276" y="0" width="92" height="20" uuid="ab7c8e9a-d48a-4414-ba5c-c91150e1b7cf"/>
+				<reportElement mode="Opaque" x="276" y="0" width="92" height="20" uuid="ab7c8e9a-d48a-4414-ba5c-c91150e1b7cf"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[QUANTITY]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="368" y="0" width="92" height="20" uuid="12ad513f-4a05-4575-ad49-f2c49c1c13f4"/>
+				<reportElement mode="Opaque" x="368" y="0" width="92" height="20" uuid="12ad513f-4a05-4575-ad49-f2c49c1c13f4"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[BRANCH]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="460" y="0" width="95" height="20" uuid="01d18a21-16fd-49a4-a742-b609c27f2620"/>
+				<reportElement mode="Opaque" x="460" y="0" width="95" height="20" uuid="01d18a21-16fd-49a4-a742-b609c27f2620"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[PRODUCTION DATE]]></text>
 			</staticText>
 		</band>
@@ -73,31 +122,34 @@ AND TO_DATE(dpp.production_date, 'MM-DD-YYYY HH24:MI:SS') <= TO_DATE($P{toDate},
 		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="92" height="20" uuid="68526bdb-099f-4ecb-9481-3e7b7ff4acd6"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{DPP_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="0" width="92" height="20" uuid="932fd257-4d7e-47b8-bf40-a54c8dba89da"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{SKU_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="184" y="0" width="92" height="20" uuid="058d2837-d398-45e3-9d7e-b9c1e0040b58"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="276" y="0" width="92" height="20" uuid="e1ea1bd2-f54d-4260-9d8f-4071268732ed"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="368" y="0" width="92" height="20" uuid="e53c89c3-397e-406b-9555-25b22ee08475"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="460" y="0" width="95" height="20" uuid="9c7fb428-fea8-4030-8360-e20ef25e3cc4"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{PRODUCTION_DATE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<summary>
-		<band height="50"/>
-	</summary>
 </jasperReport>

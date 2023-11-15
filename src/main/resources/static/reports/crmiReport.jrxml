@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cpiReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cab585cd-49f3-4a76-b5a3-98fefd807595">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.2100000000000002"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="branchId" class="java.lang.Integer">
@@ -27,36 +27,79 @@ ORDER BY rml.material_cd]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="141" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="30" uuid="31d901a9-695d-4f88-9c37-9dba46b90c48"/>
-				<textElement>
-					<font size="12"/>
+				<reportElement mode="Transparent" x="105" y="33" width="450" height="33" backcolor="#FFCC00" uuid="c1483468-7fd7-4267-9f96-6979a06ef81c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Script MT Bold" size="22" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Quisine Kamote Crisps - Current Raw Material Inventory]]></text>
+				<text><![CDATA[Quisine Kamote Crisps]]></text>
 			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="6b961d92-d66e-4563-b5de-6069a88072bf"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="20" uuid="34640e54-34e1-4ccf-990c-c46da8656982"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<image>
+				<reportElement mode="Transparent" x="65" y="33" width="119" height="84" backcolor="#FFCC33" uuid="3ad95e44-a230-40c8-8b96-334b013b0b73"/>
+				<imageExpression><![CDATA["C:\\Users\\Mcdo\\Pictures\\QKC Logo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="320a9e08-9dae-4a47-aa0a-5a6f7020b29e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="105" y="66" width="450" height="33" backcolor="#FFCC00" uuid="cc5fd382-ed4a-4046-a0db-b3e420bbcbd7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Current Raw Material Inventory Report]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="false">
+				<reportElement x="30" y="0" width="100" height="20" uuid="a9172c3b-c001-4264-993b-e84a2abd67f4"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="21" splitType="Stretch">
 			<staticText>
-				<reportElement x="270" y="0" width="120" height="20" uuid="d55f5a44-18cb-4142-ad3d-8f671775db0e"/>
+				<reportElement x="355" y="0" width="120" height="20" uuid="d55f5a44-18cb-4142-ad3d-8f671775db0e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Unit of Measurement]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="390" y="0" width="80" height="20" uuid="5639aa1f-e57f-4cca-b22c-68af86db5eeb"/>
+				<reportElement x="475" y="0" width="80" height="20" uuid="5639aa1f-e57f-4cca-b22c-68af86db5eeb"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Branch]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="90" y="0" width="100" height="20" uuid="20e08f5d-4053-43db-a22f-afc5b915aadd"/>
+				<reportElement x="90" y="0" width="156" height="20" uuid="20e08f5d-4053-43db-a22f-afc5b915aadd"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Material Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="190" y="0" width="80" height="20" uuid="882cd0e2-aeab-4dd9-99b7-f7619fa508b1"/>
+				<reportElement x="246" y="0" width="109" height="20" uuid="882cd0e2-aeab-4dd9-99b7-f7619fa508b1"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Quantity]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="0" width="90" height="20" uuid="47063c19-f0cb-4b8f-adad-1fe468daf0b0"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 		</band>
@@ -65,22 +108,27 @@ ORDER BY rml.material_cd]]>
 		<band height="21" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="1" width="90" height="20" uuid="1735b76c-58d2-462c-8b8c-7d3edc4245fd"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{MATERIAL_CD}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="90" y="1" width="100" height="20" uuid="7c2b4a4f-3335-4507-ada4-cf5449fe87cd"/>
+				<reportElement x="90" y="1" width="156" height="20" uuid="7c2b4a4f-3335-4507-ada4-cf5449fe87cd"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{MATERIAL_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="190" y="1" width="80" height="20" uuid="a50d181f-be9e-48bd-8cd7-18c829d48a49"/>
+				<reportElement x="246" y="1" width="109" height="20" uuid="a50d181f-be9e-48bd-8cd7-18c829d48a49"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{SUM(RML.QUANTITY)-NVL((SELECTSUM(QUANTITY_TO_USE)FROMGRP2_PRODUCTION_MATERIALSWHEREMATERIAL_CD=RML.MATERIAL_CD),0)}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="270" y="1" width="120" height="20" uuid="3e32d110-6207-4925-a262-bbd76ccb949a"/>
+				<reportElement x="355" y="1" width="120" height="20" uuid="3e32d110-6207-4925-a262-bbd76ccb949a"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{UNIT_OF_MEASUREMENT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="390" y="1" width="80" height="20" uuid="e6242674-b64a-4675-bcb5-f18db6ea5b03"/>
+				<reportElement x="475" y="1" width="80" height="20" uuid="e6242674-b64a-4675-bcb5-f18db6ea5b03"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
 			</textField>
 		</band>

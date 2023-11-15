@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fplReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0d242368-fb98-4864-81fe-ec71687f0aaf">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.2100000000000004"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="branchId" class="java.lang.Integer">
@@ -28,40 +28,86 @@ AND TO_DATE(fpl.date_finished, 'MM-DD-YYYY HH24:MI:SS') <= TO_DATE($P{toDate}, '
 	<field name="BRANCH_NAME" class="java.lang.String"/>
 	<field name="DATE_FINISHED" class="java.sql.Timestamp"/>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="138" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="30" uuid="561a488e-4ff1-4d13-b598-3c387f3317b7"/>
-				<textElement>
-					<font size="12"/>
+				<reportElement mode="Transparent" x="105" y="33" width="450" height="33" backcolor="#FFCC00" uuid="1d8dabfa-a882-4eae-a41d-c57b95209e8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Script MT Bold" size="22" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Quisine Kamote Crisps - Finished Product List]]></text>
+				<text><![CDATA[Quisine Kamote Crisps]]></text>
 			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="92899d7d-47c3-412b-9eaa-b46d5c4c8fb1"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="30" height="20" uuid="1ade9b7e-21ea-4bcc-810d-1ac838f42aed"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<image>
+				<reportElement mode="Transparent" x="65" y="33" width="119" height="84" backcolor="#FFCC33" uuid="21ba7a2c-e93b-4eb3-ac2b-61dad9933dc6"/>
+				<imageExpression><![CDATA["C:\\Users\\Mcdo\\Pictures\\QKC Logo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="96ac5904-c6f5-45a1-9ff7-7e5cefc35357"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="105" y="66" width="450" height="33" backcolor="#FFCC00" uuid="ddc1f953-bc94-411e-9148-58c85daa75b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Finished Product List Report]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy" isBlankWhenNull="false">
+				<reportElement x="30" y="0" width="100" height="20" uuid="d4f49cbe-89e3-499f-bbf0-55906151b9b0"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="90" height="20" uuid="1aca52fb-0aa8-4279-b9f2-dccd911d588d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="90" y="0" width="100" height="20" uuid="4bbce012-d769-4911-942c-52af77dbdad8"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Product Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="190" y="0" width="80" height="20" uuid="c2fc12e2-4728-42ae-a66e-6bfa9ec43565"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Quantity]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="270" y="0" width="120" height="20" uuid="3ae67abf-c203-458c-ab4e-9bcf67b8a5c0"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Unit of Measurement]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="390" y="0" width="80" height="20" uuid="b2657fb2-2c36-4015-b6ad-5414001d5a1e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Branch]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="470" y="0" width="85" height="20" uuid="a555b841-7642-4172-aff2-3e114beaeadd"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Date Finished]]></text>
 			</staticText>
 		</band>
@@ -70,26 +116,32 @@ AND TO_DATE(fpl.date_finished, 'MM-DD-YYYY HH24:MI:SS') <= TO_DATE($P{toDate}, '
 		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="90" height="20" uuid="de4c8610-7c1f-4927-91af-f37dd8a7932e"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{FPL_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="92" y="0" width="98" height="20" uuid="373d5c86-52f0-48b7-a2a2-cabb83da3713"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{SKU_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="190" y="0" width="80" height="20" uuid="7092d530-a066-48a5-b7c7-e95b68c31105"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="270" y="0" width="120" height="20" uuid="773d3fc6-158d-470c-a5e0-e0240a6271d5"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{UNIT_OF_MEASUREMENT}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="390" y="0" width="80" height="20" uuid="26892ae3-0282-4356-b31d-8570da929052"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="470" y="0" width="85" height="20" uuid="dd63feb7-48e0-4e84-a3af-57639436092c"/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{DATE_FINISHED}]]></textFieldExpression>
 			</textField>
 		</band>
