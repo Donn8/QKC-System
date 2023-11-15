@@ -41,7 +41,6 @@
 	<jsp:include page="addDailyPlannedProductionForm.jsp" />
 	<jsp:include page="editDailyPlannedProductionForm.jsp" />
 	<jsp:include page="delDailyPlannedProductionConfirm.jsp" />
-	<%@ include file="qkcFooter.jsp"%>
 </body>
 <script>
 	$(document).ready(function() {
