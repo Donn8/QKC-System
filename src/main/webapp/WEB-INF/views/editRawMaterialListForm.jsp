@@ -8,7 +8,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/rawmaterials/edit" method="post">
+        <form id="rawMaterialListEdit" action="/rawmaterials/edit" method="post">
 			<div class="form-group">
 				<label for="edit_material_cd" class="mb-2 fw-bold">Raw Material:</label>
 				<select id="editRawMaterialSelection" name="edit_material_cd" class="form-select" aria-label="Default select example" onfocus="this.size=4" onblur="this.size=1;" onchange="this.size=1; this.blur();" required >
@@ -21,8 +21,9 @@
 			<br>
 			<div class="form-group">
 				<label for="editQuantity" class="mb-2 fw-bold">Quantity:</label>
+				<small class="text-muted">(Range: [1 - 1000] Only)</small>
 				<div class="input-group w-50">
-					<input type="number" class="form-control w-25" min="0" id="editQuantity" name="editQuantity" placeholder="Quantity" required>
+					<input type="number" class="form-control w-25" min="1" max="1000" id="editQuantity" name="editQuantity" placeholder="Quantity" required>
 					<span class="input-group-text" id="editUnitOfMeasurement"></span>
 				</div>
 			</div>
