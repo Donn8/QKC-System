@@ -8,7 +8,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/rawmaterials/delete" method="post">
+        <form id="rawMaterialListDelete" action="/rawmaterials/delete" method="post">
 			<h5 class="text-center">Are you sure you want to delete this item?</h5>
 			<hr>
 			<div class="form-group text-center">
