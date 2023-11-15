@@ -39,11 +39,12 @@
 			
 			$('#oldDispTypCd').val(dispatchTypCd);
 			$('#newDispTypCd').val(dispatchTypCd);
+			$('#oldDispTypName').val(dispatchTypName);
 			$('#newDispTypName').val(dispatchTypName);
 			
 		});
 		
-$('#dispatchTypeTbl').on('click', '.btn-dispTypDelete', function(){
+		$('#dispatchTypeTbl').on('click', '.btn-dispTypDelete', function(){
 			
 			var dispatchtypcd = $(this).closest('tr').find('#dispatchTypCd').text();
 			$('#deleteFormDispTyp').submit(function(e){
@@ -60,11 +61,21 @@ $('#dispatchTypeTbl').on('click', '.btn-dispTypDelete', function(){
 			            "dispTypCd": dispatchtypcd,
 			        },
 			        success: function(result){
-			            location.reload();
-			            alert("Deleted Successfully!");
+			        	swal("Nice!", "Deleted successfully.", "success", {
+			        		timer: 2500,
+							  buttons: false,
+							  closeOnClickOutside: true,
+							}).then(function() {
+								location.reload();
+							});
 			        },
 			        error: function(){
-			            alert("Failed to Delete!");
+			        	swal("Sorry!", "Failed to delete.", "error", {
+							  button: "OK",
+							  closeOnClickOutside: true,
+							}).then(function() {
+								location.reload();
+							});
 			        }
 			  	});
 			 }
@@ -75,17 +86,37 @@ $('#dispatchTypeTbl').on('click', '.btn-dispTypDelete', function(){
 			var dispatchtypcd = $('#addDispTypCd').val();
 			var dispatchtypname = $('#addDispTypName').val();
 			var unique = true;
+			var uniqueName = true;
 				$('#dispatchTypeTbl tbody tr').each(function(){
 					var checkCd = $(this).find('#dispatchTypCd').text();
+					var checkName = $(this).find('#dispatchTypName').text();
 					if(dispatchtypcd == checkCd){
 						unique = false;
 					}
+					if(dispatchtypname == checkName){
+						uniqueName = false;
+					}
 				});
-				if(unique){
+				if(unique&&uniqueName){
 					addDispatchType(dispatchtypcd, dispatchtypname);
 				}
+				else if(!unique&&uniqueName){
+					swal("Oops!", "The dispatch type code already exists.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
+				}
+				else if(unique&&!uniqueName){
+					swal("Oops!", "The dispatch type name already exists.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
+				}
 				else {
-					alert("Dispatch Type Code already exists!");
+					swal("Oops!", "The dispatch type code and name already exist.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
 				}
 		});
 		
@@ -100,35 +131,75 @@ $('#dispatchTypeTbl').on('click', '.btn-dispTypDelete', function(){
 		            "addDispTypName": dispatchtypname,
 		        },
 		        success: function(result){
-		            location.reload();
-		            alert("Added Successfully!");
+		        	swal("Nice!", "Added successfully!", "success", {
+		        		timer: 2500,
+						  buttons: false,
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 		        },
 		        error: function(){
-		            alert("Failed to Add!");
+		        	swal("Sorry!", "Failed to add.", "error", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});;
 		        }
 		  	});
 		 }
-		//EDIT-------------------------------
+		
 		$('#editFormDispTyp').submit(function(e){
 			e.preventDefault();
 			var dispatchtypcd = $('#newDispTypCd').val();
 			var dispatchtypname = $('#newDispTypName').val();
 			var existcode = $('#oldDispTypCd').val();
+			var existname = $('#oldDispTypName').val();
 			var unique = true;
+			var uniqueName = true;
 				$('#dispatchTypeTbl tbody tr').each(function(){
 					var checkCd = $(this).find('#dispatchTypCd').text();
-					if(dispatchtypcd == checkCd){
+					var checkName = $(this).find('#dispatchTypName').text();
+					if(dispatchtypcd === checkCd){
 						unique = false;
+						if(existcode === checkCd){
+							unique = true;
+						}
+					}
+					if(dispatchtypname === checkName){
+						uniqueName = false;
+						if(existname === checkName){
+							uniqueName = true;
+						}
 					}
 				});
-				if(dispatchtypcd == existcode){
+				if(dispatchtypcd === existcode){
 					unique = true;
 				}
-				if(unique){
+				if(dispatchtypname === existname){
+					uniqueName = true;
+				}
+				if(unique&&uniqueName){
 					editDispatchType(existcode, dispatchtypcd, dispatchtypname);
 				}
+				else if(!unique&&uniqueName){
+					swal("Oops!", "The dispatch type code already exists.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
+				}
+				else if(unique&&!uniqueName) {
+					swal("Oops!", "The dispatch type name already exists.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
+				}
 				else {
-					alert("Dispatch Type Code already exists!");
+					swal("Oops!", "The dispatch type code and name already exist.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
 				}
 		});
 		
@@ -144,11 +215,21 @@ $('#dispatchTypeTbl').on('click', '.btn-dispTypDelete', function(){
 		            "oldDispTypCd": existcode
 		        },
 		        success: function(result){
-		            location.reload();
-		            alert("Edited Successfully!");
-		        },
-		        error: function(){
-		            alert("Failed to Edit!");
+		        	swal("Nice!", "Edited successfully!", "success", {
+		        		timer: 2500,
+						  buttons: false,
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
+				},
+				error : function() {
+					swal("Sorry!", "Failed to edit.", "error", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 		        }
 		  	});
 		 }
