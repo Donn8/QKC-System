@@ -20,7 +20,7 @@
 				<td class="text-center" id="dppEditRawMatCd"><c:out value="${listItem.getMaterial_cd()}"/></td>
 				<td class="text-center" id="dppEditRawMatName"><c:out value="${listItem.getMaterial_name()}"/></td>
 				<td class="text-center" id="dppEditTotalQty"><c:out value="${listItem.getTotal_quantity()}"/></td> 
-				<td class="text-center" id="dppEditQtyUse"><input id="skuEditQuantityUse" type="number" min="1" max="${listItem.getTotal_quantity()}" disabled="disabled" required></td> 
+				<td class="text-center" id="dppEditQtyUse"><input id="skuEditQuantityUse" class="skuEditQuantityUse" type="number" min="1" max="${listItem.getTotal_quantity()}" disabled="disabled" required></td> 
 			</tr>
 		</c:forEach>
 	</tbody> 
@@ -51,7 +51,11 @@ $(document).ready(function(){
 		
 		if(editSelectedMaterials.length == 0){
 			e.preventDefault();
-			alert("Please select at least one raw material");
+			//Change
+			swal("Oops!", "Please select at least one raw material","warning",{
+				button: "OK",
+				closeOnClickOutside: true,
+			});
 		}else{
 			var editSkuCd = $('#editSkuSelection').val();
 			var editSkuQty = $('#editSkuQuantity').val();
@@ -63,8 +67,12 @@ $(document).ready(function(){
 				editMaterialCdList.push(editMaterialCd);
 				editQuantityUseList.push(editQuantityUse);
 			});	
-			console.log(editMaterialCdList);
-			console.log(editQuantityUseList);
+			//Change
+			$('#editDailyPlannedProductionMdl').modal('hide');
+			$('#addProdPlanBtn').attr('disabled','disabled');
+			$('.dppBtnEdit').attr('disabled','disabled');
+			$('.dppBtnDelete').attr('disabled','disabled');
+			$('.skuStatus').attr('disabled','disabled');
 			editProductionMaterial(editDppId, editSkuCd, editMaterialCdList, editQuantityUseList, editSkuQty);
 		}
 		
@@ -83,11 +91,22 @@ $(document).ready(function(){
 				"editSkuQuantity": editSkuQty
 			},
 			success: function(result){
-				location.reload();
-				alert("Edited Successfully!");
+				//Change
+				swal("Nice!","Updated Successfully","success",{
+						timer: 1500,
+						buttons: false
+					}).then(function(){
+						location.reload();
+					});
 			},
 			error: function(){
-				alert("Failed to Edit!");
+				//Change
+				swal("Sorry!", "Failed to Update","error",{
+					button: "OK",
+					closeOnClickOutside: true,
+				}).then(function(){
+					location.reload();
+				});
 			}
 		});
 	}
