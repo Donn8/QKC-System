@@ -35,7 +35,6 @@ var contextPath = '${pageContext.request.contextPath}' + '/';
 		<br>
 	</div>
 	<jsp:include page="rawMaterialForm.jsp"/>
-	<%@ include file="qkcFooter.jsp"%>
 </body>
 
 <script>
