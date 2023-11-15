@@ -1,7 +1,6 @@
 <style>
 @import
-	url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap')
-	;
+	url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 
 * {
 	margin: 0;
@@ -15,15 +14,16 @@ body {
 	display: block;
 	align-items: center;
 	justify-content: center;
-	
+	margin-bottom: 0;
 }
 
 .site-footer {
 	font-size: 15px;
 	line-height: 24px;
-	color: #737373;
-	background-color: #d7f8f3;
-	margin-top: 600px;
+	color: black;
+	background-color: #E0A387;
+	margin-bottom: 0;
+	padding: 10px;
 }
 
 .site-footer hr {
@@ -190,7 +190,7 @@ body {
 		<div class="row">
 			<div class="col-md-8 col-sm-6 col-12">
 				<p class="copyright-text">
-					Copyright © 2023 All Rights Reserved by <a href="#" ><span
+					Copyright Â© 2023 All Rights Reserved by <a href="#" ><span
 						class="logo">QUISINE</span></a>
 				</p>
 			</div>
