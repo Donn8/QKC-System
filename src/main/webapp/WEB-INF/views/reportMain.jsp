@@ -166,7 +166,12 @@ button {
 			
 			if ((reportType === "currentProductInventory" || reportType === "currentRawMaterialsInventory")&& reportType) {
 				loadReport(reportType);
-			} else if ((reportType === "finishedProductList" || reportType === "rawMaterialList" || reportType === "dailyPlannedProduction") &&
+			} else if ((reportType == "") && (startDate, endDate)){
+				swal("Oops!", "Invalid Report Type.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
+			}else if ((reportType === "finishedProductList" || reportType === "rawMaterialList" || reportType === "dailyPlannedProduction") &&
 			        (startDate === "" || endDate === "") || (startDate > endDate)){
 				swal("Oops!", "Invalid Date Range.", "warning", {
 					  button: "OK",
@@ -194,17 +199,23 @@ button {
 					  closeOnClickOutside: true,
 					});
 				event.preventDefault();
+			}else if ((reportType == "") && (startDate, endDate)){
+				swal("Oops!", "Invalid Report Type.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
+				event.preventDefault();
 			}else if ((reportType === "finishedProductList" || reportType === "rawMaterialList" || reportType === "dailyPlannedProduction") &&
 			        (startDate === "" || endDate === "") || (startDate > endDate)) {
 				swal("Oops!", "Invalid Date Range.", "warning", {
 					  button: "OK",
 					  closeOnClickOutside: true,
-				});
-                		event.preventDefault();
+					});
+                event.preventDefault();
 			} else {
-                		form.submit();
-	            	}
-	        });
+                form.submit();
+            }
+        });
 	
 		function loadReport(reportType, startDate, endDate) {
 			var tableId;
