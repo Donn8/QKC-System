@@ -8,7 +8,7 @@
 				<form id="addFormBranch" >
 					<div class="form-group">
 						<label for="addBranchName">Branch Name</label> <input type="text"
-							class="form-control" id="addBranchName" name="addBranchName" required
+							class="form-control" id="addBranchName" name="addBranchName" maxlength="50" required
 							placeholder="Enter branch name">
 					</div>
 					<br>
@@ -37,7 +37,7 @@
 					<input type="hidden" id="oldBranchName" name="oldBranchName"/>
 					<div class="form-group">
 						<label for="newBranchName">Branch Name</label> <input type="text"
-							class="form-control" id="newBranchName" name="newBranchName" placeholder="New Branch Name" required />
+							class="form-control" id="newBranchName" name="newBranchName" maxlength="50" required />
 					</div>
 					<br>
 					<div class="form-group">

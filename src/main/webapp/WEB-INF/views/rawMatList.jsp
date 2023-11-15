@@ -53,6 +53,7 @@
 
 			$('#oldRawMatCd').val(rawMatCd);
 			$('#newRawMatCd').val(rawMatCd);
+			$('#oldRawMatName').val(rawMatName);
 			$('#newRawMatName').val(rawMatName);
 			$('#newRawMatUOM').val(rawMatUOM);
 
@@ -74,11 +75,21 @@
 						"rawMaterialCd" : rawmatcode,
 					},
 					success : function(result) {
-						location.reload();
-						alert("Deleted Successfully!");
-					},
-					error : function() {
-						alert("Failed to Delete!");
+						swal("Nice!", "Deleted successfully.", "success", {
+			        		timer: 2500,
+							  buttons: false,
+							  closeOnClickOutside: true,
+							}).then(function() {
+								location.reload();
+							});
+			        },
+			        error: function(){
+			        	swal("Sorry!", "Failed to delete.", "error", {
+							  button: "OK",
+							  closeOnClickOutside: true,
+							}).then(function() {
+								location.reload();
+							});
 					}
 				});
 			}
@@ -90,16 +101,37 @@
 			var rawmatname = $('#addRawMatName').val();
 			var uom = $('#addRawMatUOM').val();
 			var unique = true;
+			var uniqueName = true;
 			$('#rawMaterialTbl tbody tr').each(function() {
 				var checkCd = $(this).find('#rawMatCd').text();
+				var checkName = $(this).find('#rawMatName').text();
 				if (rawmatcode == checkCd) {
 					unique = false;
 				}
+				if(rawmatname == checkName){
+					uniqueName = false;
+				}
 			});
-			if (unique) {
+			if(unique&&uniqueName){
 				addRawMaterial(rawmatcode, rawmatname, uom);
-			} else {
-				alert("Raw Material Code already exists!");
+			}
+			else if(!unique&&uniqueName){
+				swal("Oops!", "The raw material code already exists.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
+			}
+			else if(unique&&!uniqueName){
+				swal("Oops!", "The raw material name already exists.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
+			}
+			else {
+				swal("Oops!", "The raw material code and name already exist.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
 			}
 		});
 
@@ -114,35 +146,76 @@
 					"addRawMatUOM" : uom
 				},
 				success : function(result) {
-					location.reload();
-					alert("Added Successfully!");
-				},
-				error : function() {
-					alert("Failed to Add!");
+					swal("Nice!", "Added successfully!", "success", {
+		        		timer: 2500,
+						  buttons: false,
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
+		        },
+		        error: function(){
+		        	swal("Sorry!", "Failed to add.", "error", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});;
 				}
 			});
 		}
-		//EDIT-------------------------------
+		
 		$('#editFormRaw').submit(function(e) {
 			e.preventDefault();
 			var rawmatcode = $('#newRawMatCd').val();
 			var rawmatname = $('#newRawMatName').val();
 			var uom = $('#newRawMatUOM').val();
 			var existcode = $('#oldRawMatCd').val();
+			var existname = $('#oldRawMatName').val();
 			var unique = true;
+			var uniqueName = true;
 			$('#rawMaterialTbl tbody tr').each(function() {
 				var checkCd = $(this).find('#rawMatCd').text();
-				if (rawmatcode == checkCd) {
+				var checkName = $(this).find('#rawMatName').text();
+				if (rawmatcode === checkCd) {
 					unique = false;
+					if(existcode === checkCd){
+						unique = true;
+					}
+				}
+				if (rawmatname === checkName) {
+					uniqueName = false;
+					if(existname === checkName){
+						uniqueName = true;
+					}
 				}
 			});
-			if (rawmatcode == existcode) {
+			if (rawmatcode === existcode) {
 				unique = true;
 			}
-			if (unique) {
+			if (rawmatname === existname) {
+				uniqueName = true;
+			}
+			if(unique&&uniqueName) {
 				editRawMaterial(existcode, rawmatcode, rawmatname, uom);
-			} else {
-				alert("Raw Material Code already exists!");
+			}
+			else if(!unique&&uniqueName){
+				swal("Oops!", "The raw material code already exists.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
+			}
+			else if(unique&&!uniqueName) {
+				swal("Oops!", "The raw material name already exists.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
+			}
+			else {
+				swal("Oops!", "The raw material code and name already exist.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
 			}
 		});
 
@@ -158,11 +231,21 @@
 					"oldRawMatCd" : existcode
 				},
 				success : function(result) {
-					location.reload();
-					alert("Edited Successfully!");
+					swal("Nice!", "Edited successfully!", "success", {
+		        		timer: 2500,
+						  buttons: false,
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 				},
 				error : function() {
-					alert("Failed to Edit!");
+					swal("Sorry!", "Failed to edit.", "error", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 				}
 			});
 		}

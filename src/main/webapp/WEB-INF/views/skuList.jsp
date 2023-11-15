@@ -48,12 +48,13 @@
 
 			$('#oldSkuCd').val(skuCd);
 			$('#newSkuCd').val(skuCd);
+			$('#oldSkuName').val(skuName);
 			$('#newSkuName').val(skuName);
 			$('#newSkuUOM').val(skuUOM);
 
 		});
 
-$('#skuTbl').on('click', '.btn-skuDelete', function(){
+		$('#skuTbl').on('click', '.btn-skuDelete', function(){
 			
 			var skucode = $(this).closest('tr').find('#skuCd').text();
 			$('#deleteFormSku').submit(function(e){
@@ -70,11 +71,21 @@ $('#skuTbl').on('click', '.btn-skuDelete', function(){
 			            "skuCode": skucode,
 			        },
 			        success: function(result){
-			            location.reload();
-			            alert("Deleted Successfully!");
+			        	swal("Nice!", "Deleted successfully.", "success", {
+			        		timer: 2500,
+							  buttons: false,
+							  closeOnClickOutside: true,
+							}).then(function() {
+								location.reload();
+							});
 			        },
 			        error: function(){
-			            alert("Failed to Delete!");
+			        	swal("Sorry!", "Failed to delete.", "error", {
+							  button: "OK",
+							  closeOnClickOutside: true,
+							}).then(function() {
+								location.reload();
+							});
 			        }
 			  	});
 			 }
@@ -86,17 +97,37 @@ $('#skuTbl').on('click', '.btn-skuDelete', function(){
 			var skuname = $('#addSkuName').val();
 			var uom = $('#addSkuUOM').val();
 			var unique = true;
+			var uniqueName = true;
 				$('#skuTbl tbody tr').each(function(){
 					var checkCd = $(this).find('#skuCd').text();
+					var checkName = $(this).find('#skuName').text();
 					if(skucode == checkCd){
 						unique = false;
 					}
+					if(skuname == checkName){
+						uniqueName = false;
+					}
 				});
-				if(unique){
+				if(unique&&uniqueName){
 					addSku(skucode, skuname, uom);
 				}
+				else if(!unique&&uniqueName){
+					swal("Oops!", "The SKU code already exists.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
+				}
+				else if(unique&&!uniqueName){
+					swal("Oops!", "The SKU name already exists.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
+				}
 				else {
-					alert("SKU Code already exists!");
+					swal("Oops!", "The SKU code and name already exist.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
 				}
 		});
 		
@@ -112,36 +143,76 @@ $('#skuTbl').on('click', '.btn-skuDelete', function(){
 		            "addSkuUOM": uom
 		        },
 		        success: function(result){
-		            location.reload();
-		            alert("Added Successfully!");
+		        	swal("Nice!", "Added successfully!", "success", {
+		        		timer: 2500,
+		        		 buttons: false,
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 		        },
 		        error: function(){
-		            alert("Failed to Add!");
+		        	swal("Sorry!", "Failed to add.", "error", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});;
 		        }
 		  	});
 		 }
-		//EDIT-------------------------------
+		
 		$('#editFormSku').submit(function(e){
 			e.preventDefault();
 			var skucode = $('#newSkuCd').val();
 			var skuname = $('#newSkuName').val();
 			var uom = $('#newSkuUOM').val();
-			var existsku = $('#oldSkuCd').val();
+			var existcode = $('#oldSkuCd').val();
+			var existname = $('#oldSkuName').val();
 			var unique = true;
+			var uniqueName = true;
 				$('#skuTbl tbody tr').each(function(){
 					var checkCd = $(this).find('#skuCd').text();
+					var checkName = $(this).find('#skuName').text();
 					if(skucode == checkCd){
 						unique = false;
+						if(existcode === checkCd){
+							unique = true;
+						}
+					}
+					if(skuname === checkName){
+						uniqueName = false;
+						if(existname === checkName){
+							uniqueName = true;
+						}
 					}
 				});
-				if(skucode == existsku){
+				if(skucode === existcode){
 					unique = true;
 				}
-				if(unique){
+				if(skuname === existname){
+					uniqueName = true;
+				}
+				if(unique&&uniqueName){
 					editSku(existsku, skucode, skuname, uom);
 				}
+				else if(!unique&&uniqueName){
+					swal("Oops!", "The SKU code already exists.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
+				}
+				else if(unique&&!uniqueName) {
+					swal("Oops!", "The SKU name already exists.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
+				}
 				else {
-					alert("SKU Code already exists!");
+					swal("Oops!", "The SKU code and name already exist.", "warning", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						});
 				}
 		});
 		
@@ -158,11 +229,21 @@ $('#skuTbl').on('click', '.btn-skuDelete', function(){
 		            "oldSkuCd": existsku
 		        },
 		        success: function(result){
-		            location.reload();
-		            alert("Edited Successfully!");
-		        },
-		        error: function(){
-		            alert("Failed to Edit!");
+		        	swal("Nice!", "Edited successfully!", "success", {
+		        		timer: 2500,
+		        		 buttons: false,
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
+				},
+				error : function() {
+					swal("Sorry!", "Failed to edit.", "error", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 		        }
 		  	});
 		 }

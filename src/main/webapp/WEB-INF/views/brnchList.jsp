@@ -69,11 +69,21 @@
 						"txtBranchId" : branchId,
 					},
 					success : function(result) {
-						location.reload();
-						alert("Deleted Successfully!");
+						swal("Nice!", "Deleted successfully.", "success", {
+							  timer: 2500,
+							  buttons: false,
+							  closeOnClickOutside: true,
+							}).then(function() {
+								location.reload();
+							});
 					},
 					error : function() {
-						alert("Failed to Delete!");
+						swal("Sorry!", "Failed to delete.", "error", {
+							  button: "OK",
+							  closeOnClickOutside: true,
+							}).then(function() {
+								location.reload();
+							});
 					}
 				});
 			}
@@ -92,7 +102,10 @@
 			if (unique) {
 				addBranch(branchname);
 			} else {
-				alert("Branch Name already exists!");
+				swal("Oops!", "The branch name already exists.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
 			}
 		});
 
@@ -105,15 +118,25 @@
 					"addBranchName" : branchname,
 				},
 				success : function(result) {
-					location.reload();
-					alert("Added Successfully!");
+					swal("Nice!", "Added successfully!", "success", {
+					  	  timer: 2500,
+						  buttons: false,
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 				},
 				error : function() {
-					alert("Failed to Add!");
+					swal("Sorry!", "Failed to add.", "error", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 				}
 			});
 		}
-		//EDIT-------------------------------
+		
 		$('#editFormBranch').submit(function(e) {
 			e.preventDefault();
 			var branchname = $('#newBranchName').val();
@@ -132,7 +155,10 @@
 			if (unique) {
 				editBranch(existid, branchname);
 			} else {
-				alert("Branch Name already exists!");
+				swal("Oops!", "The branch name already exists.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
 			}
 		});
 
@@ -146,11 +172,21 @@
 					"newBranchName" : branchname,
 				},
 				success : function(result) {
-					location.reload();
-					alert("Edited Successfully!");
+					swal("Nice!", "Edited successfully!", "success", {
+						timer: 2500,
+						  buttons: false,
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 				},
 				error : function() {
-					alert("Failed to Edit!");
+					swal("Sorry!", "Failed to edit.", "error", {
+						  button: "OK",
+						  closeOnClickOutside: true,
+						}).then(function() {
+							location.reload();
+						});
 				}
 			});
 		}

@@ -7,21 +7,22 @@
 			<div class="modal-body">
 				<form id="addFormRaw">
 					<div class="form-group">
-						<label for="addRawMatCd">Raw Material Code</label> <input type="text"
-							class="form-control" id="addRawMatCd" name="addRawMatCd" pattern="^(?:XYZ)\d\d\d$" required
-							placeholder="XYZ###" title="Format: XYZ###">
+						<label for="addRawMatCd">Raw Material Code</label>
+						<small id="rawMaterialCdFormat" class="text-muted">(Format should be XYZ###)</small>
+						<input type="text"
+							class="form-control" id="addRawMatCd" name="addRawMatCd" pattern="^(?:XYZ)\d\d\d$"
+							aria-describedby="rawMaterialCdFormat" maxlength="6"
+							placeholder="Enter raw material code here" required>
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="addRawMatName">Raw Material Name</label> <input type="text"
-							class="form-control" id="addRawMatName" name="addRawMatName" required
+							class="form-control" id="addRawMatName" name="addRawMatName" maxlength="50" required
 							placeholder="Enter raw material name">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="addRawMatUOM">Unit of Measurement</label> <!--  <input type=""
-							class="form-control" id="addRawMatUOM" name="addRawMatUOM" required
-							placeholder="Unit of Measurement">-->
+						<label for="addRawMatUOM">Unit of Measurement</label>
 							<select class="form-select form-select-sm unit_of_measurement" aria-label=".unit_of_measurement options" id = "addRawMatUOM" name = "addRawMatUOM" required>
 							  <option disabled selected>Choose unit of measurement</option>
 							  <option value="mg">milligram</option>
@@ -59,19 +60,22 @@
 				<form id="editFormRaw">
 					<input type="hidden" id="oldRawMatCd" name="oldRawMatCd"/>
 					<div class="form-group">
-						<label for="newRawMatCd">Raw Material Code</label> <input type="text"
-							class="form-control" id="newRawMatCd"  title="Format: XYZ###" name="newRawMatCd" pattern="^(?:XYZ)\d\d\d$" required />
+						<label for="newRawMatCd">Raw Material Code</label>
+						<small id="rawMaterialCdFormat" class="text-muted">(Format should be XYZ###)</small>
+						<input type="text"
+							class="form-control" id="newRawMatCd"  title="Format: XYZ###" name="newRawMatCd"
+							aria-describedby="rawMaterialCdFormat" pattern="^(?:XYZ)\d\d\d$"
+							maxlength="6" required />
 					</div>
 					<br>
+					<input type="hidden" id="oldRawMatName" name="oldRawMatName"/>
 					<div class="form-group">
 						<label for="newRawMatName">Raw Material Name</label> <input type="text"
-							class="form-control" id="newRawMatName" name="newRawMatName" required />
+							class="form-control" id="newRawMatName" name="newRawMatName" maxlength="50" required />
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="newRawMatUOM">Unit of Measurement</label> <!--  <input type=""
-							class="form-control" id="addRawMatUOM" name="addRawMatUOM" required
-							placeholder="Unit of Measurement">-->
+						<label for="newRawMatUOM">Unit of Measurement</label>
 							<select class="form-select form-select-sm unit_of_measurement" aria-label=".unit_of_measurement options" id = "newRawMatUOM" name = "newRawMatUOM" required>
 							  <option value="mg">milligram</option>
 							  <option value="g">gram</option>
