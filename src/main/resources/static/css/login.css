@@ -26,18 +26,17 @@ body {
 	width: 100%;
 	padding: 10px;
 	margin: 5px 0;
-	background: none;
+	background-color:floralwhite;
 	border: none;
 	outline: none;
-	border-bottom: 2px solid;
-	border-bottom-color: rgb(255, 255, 255);
-	color: white;
+	border-radius: 2px;
+	color: rgb(0, 0, 0);
 	font-family: 'Roboto', sans-serif;
 }
 
 .login-form input[type="text"]::placeholder,
 .login-form input[type="password"]::placeholder {
-	color: white;
+	color: rgb(128, 128, 128);
 }
 
 .container {
@@ -118,20 +117,4 @@ body {
 	background-size: 100% 100%;
 	background-position: center;
 	border-radius: 10px;
-}
-
-
-.login-form a.forgot-password {
-	color: rgb(255, 255, 255);
-	text-decoration: none;
-}
-
-.login-form a.sign-up {
-	color: rgb(0, 0, 255);
-	text-decoration: none;
-}
-
-.login-form a.forgot-password:hover,
-.login-form a.sign-up:hover {
-	text-decoration: underline;
 }
