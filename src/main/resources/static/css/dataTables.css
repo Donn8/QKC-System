@@ -1,15 +1,64 @@
 @charset "ISO-8859-1";
 
 body {
+	background-image: url('/img/wood.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 	font-family: 'Arial', sans-serif;
-	background-color: rgb(255, 255, 255);
-	padding:0 0 20px 0;
+	padding: 0 0 20px 0;
+	font-weight: 500;
+	animation: fadeIn 1s ease-out;
 }
 
+.table tr {
+    animation: moveUp 0.5s ease-out forwards;
+    animation-delay: calc(0.2s * var(--row-index));
+    --row-index: 0;
+}
+
+@keyframes moveUp {
+    from {
+        transform: translateY(20px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
 .table {
 	width: 100%;
 	border-collapse: collapse;
 }
+
+.dataTables_filter input {
+	border: 2px solid #000000;
+}
+
+
+div.dataTables_wrapper div.dataTables_info,
+div.dataTables_wrapper div.dataTables_length label,
+div.dataTables_wrapper div.dataTables_filter label {
+	font-weight: 500;
+	background-color: rgb(255, 255, 255);
+	border-radius: 5px;
+	display: inline-block;
+	padding: 10px;
+	color: black;
+}
+
+.container {
+	padding: 20px 75px;
+	border-radius: 10px;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid lightslategray;
+}
+h4 {
+
+	color: rgb(255, 255, 255);
+	text-shadow: 1px 2px 2px black;
+	font-style: oblique;
+
+	}
+
 
 .table th,
 .table td {
