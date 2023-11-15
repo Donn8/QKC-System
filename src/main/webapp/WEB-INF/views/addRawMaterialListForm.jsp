@@ -8,7 +8,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/rawmaterials/add" method="post">
+        <form id="rawMaterialListAdd" action="/rawmaterials/add" method="post">
 			<div class="form-group">
 				<label for="material_cd" class="mb-2 fw-bold">Raw Material:</label>
 				<select id="rawMaterialSelection" name="material_cd" class="form-select" aria-label="Default select example" onfocus="this.size=4" onblur="this.size=1;" onchange="this.size=1; this.blur();" required >
@@ -21,8 +21,9 @@
 			<br>
 			<div class="form-group">
 				<label for="quantity" class="mb-2 fw-bold">Quantity:</label>
+				<small class="text-muted">(Range: [1 - 1000] Only)</small>
 				<div class="input-group w-50">
-					<input type="number" class="form-control" min="0" id="quantity" name="quantity" placeholder="Quantity" required>
+					<input type="number" class="form-control" min="1" max="1000" id="quantity" name="quantity" placeholder="Quantity" required>
 					<span class="input-group-text" id="unitOfMeasurement"></span>
 				</div>
 			</div>
