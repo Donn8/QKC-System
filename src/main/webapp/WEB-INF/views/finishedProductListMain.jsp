@@ -37,7 +37,6 @@
 			<div id="finishedProductListMain"></div>
 		</div>
 	</div>
-	<%@ include file="qkcFooter.jsp"%>
 </body>
 <script>
 	$(document).ready(function() {
