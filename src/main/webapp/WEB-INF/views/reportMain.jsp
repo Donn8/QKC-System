@@ -26,6 +26,8 @@
 <script
 	src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
 	var contextPath = '${pageContext.request.contextPath}' + '/';
 </script>
 <style>
@@ -163,20 +165,21 @@ button {
 			var endDate = $("#toDate").val();
 			var reportType = $("#reportType").val();
 			
-			console.log(startDate);
-			console.log(endDate);
-			
-			
-			toggleDateInputs(reportType);
-	
 			if ((reportType === "currentProductInventory" || reportType === "currentRawMaterialsInventory")&& reportType) {
 				loadReport(reportType);
-			} else if (startDate > endDate){
-				alert("Please select a valid date range");
+			} else if ((reportType === "finishedProductList" || reportType === "rawMaterialList" || reportType === "dailyPlannedProduction") &&
+			        (startDate === "" || endDate === "") || (startDate > endDate)){
+				swal("Oops!", "Invalid Date Range.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
 			} else if ((startDate && endDate) && reportType) {
 				loadReport(reportType, startDate, endDate);
 			} else {
-				alert("Please select a valid report type and date range");
+				swal("Oops!", "Invalid Report Type and Date Range.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
 			}
 		});
 		
@@ -187,16 +190,22 @@ button {
 			var reportType = $("#reportType").val();
 			
 			if (reportType == "" && startDate == "" && endDate == ""){
-				alert("Please select both a valid report type and date range.");
+				swal("Oops!", "Invalid Report Type and Date Range.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
 				event.preventDefault();
 			}else if ((reportType === "finishedProductList" || reportType === "rawMaterialList" || reportType === "dailyPlannedProduction") &&
 			        (startDate === "" || endDate === "") || (startDate > endDate)) {
-                alert("Please select a valid date range.");
-                event.preventDefault();
+				swal("Oops!", "Invalid Date Range.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+				});
+                		event.preventDefault();
 			} else {
-                form.submit();
-            }
-        });
+                		form.submit();
+	            	}
+	        });
 	
 		function loadReport(reportType, startDate, endDate) {
 			var tableId;
@@ -246,7 +255,10 @@ button {
 					}
 				});
 			} else {
-				alert("Please select a valid report type.");
+				swal("Oops!", "Invalid Date Range.", "warning", {
+					  button: "OK",
+					  closeOnClickOutside: true,
+					});
 			}
 		}
 		
