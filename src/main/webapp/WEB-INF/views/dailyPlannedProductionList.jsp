@@ -58,7 +58,12 @@ $('#dailyPlannedProductionListTbl').find('.skuStatus option:selected').each(func
 });
 
 $(document).ready(function(){
-	
+	//Change
+	$('#dailyPlannedProductionMdl').on('hidden.bs.modal', function(){
+		$(this).find('#addPlanProdForm')[0].reset();
+		$(this).find('.skuQuantityUse').attr('disabled','disabled');
+	});
+
 	//EDIT DPP
 	$('#dailyPlannedProductionListTbl').on('click', '.dppBtnEdit', function(){
 		
@@ -108,23 +113,24 @@ $(document).ready(function(){
 			});
 			return response;
 		}
-		//if current total Qty < Qty to Use
-		var editSelectedMaterials = $('.chkEditMaterial:checkbox:checked');
+		//Change
+		var editSelectedMaterials = $('.chkEditMaterial:checkbox');
 		editSelectedMaterials.each(function(){
 			var editMaterialCd = $(this).closest('tr').find('#dppEditRawMatCd').text();
-			var editQuantityUse = $(this).closest('tr').find('#skuEditQuantityUse').val();
-			
-			
+			var editQuantityUse = parseInt($(this).closest('tr').find('#skuEditQuantityUse').val(),10);
+		
 			var currentTotalQty = parseInt($(this).closest('tr').find('#dppEditTotalQty').text(),10);
 			var editQuantityUseInput = $(this).closest('tr').find('#skuEditQuantityUse');
-			if(currentTotalQty < editQuantityUse){
+			var currentMax = editQuantityUse + currentTotalQty;
+			
+			if($(this).prop('checked')){
 				editQuantityUseInput.removeAttr('max');
-				editQuantityUseInput.attr('max',editQuantityUse);
+				editQuantityUseInput.attr('max',currentMax);
+			}else{
+				editQuantityUseInput.removeAttr('max');
+				editQuantityUseInput.attr('max',currentTotalQty);
 			}
-			if(currentTotalQty == 0){
-				$(this).closest('tr').find('#dppEditTotalQty').text('0');
-				editQuantityUseInput.prop('max',editQuantityUse);
-			}
+			
 		});
 	});
 	
@@ -153,10 +159,20 @@ $(document).ready(function(){
 				"status": status
 			},
 			success: function(result){
-				alert("Status Updated Successfully!")
+				//Change
+				swal("Nice!","Status Updated Successfully","success",{
+						timer: 1500,
+						buttons: false
+					})
 			},
 			error: function(){
-				alert("Status Update Failed!");
+				//Change
+				swal("Sorry!", "Status Update Failed!","error",{
+					button: "OK",
+					closeOnClickOutside: true,
+				}).then(function(){
+					location.reload();
+				});
 			}
 		});
 	}
@@ -170,6 +186,12 @@ $(document).ready(function(){
 	$('#delPlanProdForm').submit(function(e){
 		e.preventDefault()
 		var dppId = $(this).find('#delDppId').val();
+		//Change
+		$('#delDailyPlannedProductionMdl').modal('hide');
+		$('#addProdPlanBtn').attr('disabled','disabled');
+		$('.dppBtnEdit').attr('disabled','disabled');
+		$('.dppBtnDelete').attr('disabled','disabled');
+		$('.skuStatus').attr('disabled','disabled');
 		delProductionPlan(dppId);
 	});
 	
@@ -182,11 +204,22 @@ $(document).ready(function(){
 				"delDppId": dppId
 			},
 			success: function(result){
-				location.reload();
-				alert("Deleted Successfully!");
+				//Change
+				swal("Nice!","Deleted Successfully","success",{
+						timer: 1500,
+						buttons: false
+					}).then(function(){
+						location.reload();
+					});
 			},
 			error: function(){
-				alert("Deletion Failed!");
+				//Change
+				swal("Sorry!", "Failed to Delete","error",{
+					button: "OK",
+					closeOnClickOutside: true,
+				}).then(function(){
+					location.reload();
+				});
 			}
 		});
 	}
