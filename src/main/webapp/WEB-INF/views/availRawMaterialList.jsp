@@ -20,7 +20,7 @@
 				<td id="dppRawMatCd"><c:out value="${listItem.getMaterial_cd()}"/></td>
 				<td id="dppRawMatName"><c:out value="${listItem.getMaterial_name()}"/></td>
 				<td id="dppTotalQty"><c:out value="${listItem.getTotal_quantity()}"/></td> 
-				<td id="dppQtyUse"><input id="skuQuantityUse" type="number" min="1" max="${listItem.getTotal_quantity()}" disabled="disabled"></td> 
+				<td id="dppQtyUse"><input id="skuQuantityUse" class="skuQuantityUse" type="number" min="1" max="${listItem.getTotal_quantity()}" disabled="disabled"></td> 
 			</tr>
 		</c:forEach>
 	</tbody> 
@@ -50,7 +50,11 @@ $(document).ready(function(){
 		
 		if(selectedMaterials.length == 0){
 			e.preventDefault();
-			alert("Please select at least one raw material");
+			//Change
+			swal("Oops!", "Please select at least one raw material","warning",{
+				button: "OK",
+				closeOnClickOutside: true,
+			});
 		}else{
 			var skuCd = $('#skuSelection').val();
 			var skuQty = $('#skuQuantity').val();
@@ -61,7 +65,13 @@ $(document).ready(function(){
 				
 				materialCdList.push(materialCd);
 				quantityUseList.push(quantityUse);
-			});	
+			});
+			//Change
+			$('#dailyPlannedProductionMdl').modal('hide');
+			$('#addProdPlanBtn').attr('disabled','disabled');
+			$('.dppBtnEdit').attr('disabled','disabled');
+			$('.dppBtnDelete').attr('disabled','disabled');
+			$('.skuStatus').attr('disabled','disabled');
 			addProductionMaterial(skuCd, materialCdList, quantityUseList, skuQty);
 		}
 		
@@ -79,11 +89,22 @@ $(document).ready(function(){
 				"skuQuantity": skuQty
 			},
 			success: function(result){
-				location.reload();
-				alert("Added Successfully!");
+				//Change
+				swal("Nice!","Added Successfully","success",{
+						timer: 1500,
+						buttons: false
+					}).then(function(){
+						location.reload();
+					});
 			},
 			error: function(){
-				alert("Failed to Add!");
+				//Change
+				swal("Sorry!", "Failed to Add","error",{
+					button: "OK",
+					closeOnClickOutside: true,
+				}).then(function(){
+					location.reload();
+				});
 			}
 		});
 	}
