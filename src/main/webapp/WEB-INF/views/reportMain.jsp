@@ -31,20 +31,40 @@
 </script>
 <style>
 body {
-	background-color: #f4f4f4;
 	margin: 0;
 	padding: 0;
+	font-weight: 600;
+	font-family: 'Poppins', Arial, sans-serif;
+	background-image: url('/img/wood.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	min-height:100vh;
 }
 
-.container {
-	max-width: 600px;
-	margin: 50px auto;
-	padding: 20px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	background-color: #fff;
+.container{
+    background-color: white; 
+    padding: 10px 50px; 
+    border-radius: 30px; 
+    margin-bottom: 20px; 
+    max-width: 600px;
 }
+
+#previewButton,
+#generatePdfReport {
+    background-color: #007bff; 
+    color: #ffffff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    display: inline-block;
+}
+
+#previewButton:hover,
+#generatePdfReport:hover {
+    background-color: #0056b3; 
+}
+
 
 form {
 	margin-bottom: 20px;
@@ -62,7 +82,7 @@ span {
 }
 
 select, input[type="date"] {
-	width: calc(100% - 22px);
+	width: 80%;
 	padding: 8px;
 	margin-bottom: 8px;
 	border: 1px solid #3498db;
@@ -86,23 +106,25 @@ button {
 }
 
 #reportMain {
-	border: 2px solid #ccc;
-	padding: 20 50px;
+	padding: 20px 75px;
 	border-radius: 10px;
 	background-color: #f9f9f9;
+	margin-left: 150px;
+	margin-right: 0;
 }
 
-#reportForm {
-	background-color: lightred;
+.form-control{
+
+width:50%
 }
 
-#previewButtonForm {
+.row>* {
+width:80%
+}
+#previewButton {
 	background-color: green;
 }
 
-.row {
-	padding: 20px 50px;
-}
 </style>
 </head>
 <body>
