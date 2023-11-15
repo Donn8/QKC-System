@@ -40,7 +40,6 @@
 	<jsp:include page="addRawMaterialListForm.jsp" />
 	<jsp:include page="editRawMaterialListForm.jsp" />
 	<jsp:include page="delRawMaterialListConfirm.jsp" />
-	<%@ include file="qkcFooter.jsp"%>
 </body>
 <script>
 	$(document).ready(function() {
