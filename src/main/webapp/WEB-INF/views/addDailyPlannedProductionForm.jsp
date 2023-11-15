@@ -21,6 +21,7 @@
 						</c:forEach>
 					</select>
 				</div>
+				<small class="text-muted">(Range: [1 - 1000] Only)</small>
 				<div class="input-group w-50">
 					<span class="input-group-text fw-bold" id="qtyLabel">Quantity: </span>
 					<input type="number" class="form-control" min="1" max="1000" id="skuQuantity" name="skuQuantity" placeholder="Quantity" required>
@@ -30,7 +31,7 @@
 			<div class="form-group">
 				<h5 class="text-center fw-bold">Raw Material</h5>
 				<hr>
-				<div id="availRawMaterial"></div>
+				<div id="availRawMaterial" class="overflow-auto" style="max-height: 20rem"></div>
 			</div>
 			<br>
 			<div class="form-group text-center">
