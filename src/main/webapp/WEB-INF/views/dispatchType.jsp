@@ -43,7 +43,6 @@
 		<br>
 	</div>
 	<jsp:include page="dispatchTypeForm.jsp" />
-	<%@ include file="qkcFooter.jsp"%>
 </body>
 
 <script>
