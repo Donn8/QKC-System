@@ -46,8 +46,6 @@ body {
 	<jsp:include page="dispForm.jsp" />
 	<jsp:include page="editDispatch.jsp" />
 	<jsp:include page="delDispatch.jsp" />
-
-	<%@ include file="qkcFooter.jsp"%>
 </body>
 <script>
 	$(document).ready(function() {
