@@ -112,18 +112,7 @@ public class UserController {
         }	
 	}
 	
-//	@GetMapping("/maintenance/rawmaterials")
-//	public String getRawMaterials(Model model, HttpSession session) {
-//		User user = (User) session.getAttribute("user");
-//		if (user == null) {
-//            // Handle unauthenticated users
-//            return "redirect:/"; // Redirect to the login page
-//        }else {
-//        	List<RawMaterial> rawMaterials = rawMatService.getRawMaterials();
-//    		model.addAttribute("rawMaterials", rawMaterials);
-//    		return "rawMaterials";
-//        }	
-//	}
+
 
 	@GetMapping("/rawmaterials") //RawMaterialListMainPage
 	public String goToRawMaterialListPage(Model model, HttpSession session) {
