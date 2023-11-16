@@ -194,7 +194,7 @@
 					uniqueName = true;
 				}
 				if(unique&&uniqueName){
-					editSku(existsku, skucode, skuname, uom);
+					editSku(existcode, skucode, skuname, uom);
 				}
 				else if(!unique&&uniqueName){
 					swal("Oops!", "The SKU code already exists.", "warning", {
@@ -217,7 +217,7 @@
 		});
 		
 		
-		function editSku(existsku, skucode, skuname, uom){
+		function editSku(existcode, skucode, skuname, uom){
 
 		    $.ajax({
 		        url: contextPath + "sku/edit",
@@ -226,7 +226,7 @@
 		        	"newSkuCd": skucode,
 		            "newSkuName": skuname,
 		            "newSkuUOM": uom,
-		            "oldSkuCd": existsku
+		            "oldSkuCd": existcode
 		        },
 		        success: function(result){
 		        	swal("Nice!", "Edited successfully!", "success", {
